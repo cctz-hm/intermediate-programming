@@ -29,7 +29,7 @@ class Movie {
     Also, remove spaces since spaces in filenames are ANNOYING. maybe replace with underscores?
     */
     String getMovieFilename() {
-        String fileName = movieName.replace(" ", "_");
+        String fileName = movieName.replace("%20", "_");
         if (!(fileName.endsWith(".jpg") || fileName.endsWith(".png"))) {
             fileName += ".jpg";
         }
