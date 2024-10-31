@@ -23,7 +23,7 @@ class App {
         //     mpw.write(m.getMovieFilename());
         // }
 
-        //code for user input, this might not work bc I have not got to test it...
+        //code for user input
         Movie movie = new Movie(userMovieTitle);
         mpw. setMovieString(movie.getMovieNameForURL());
         mpw.write(movie.getMovieFilename());
