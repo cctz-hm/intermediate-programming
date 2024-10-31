@@ -16,6 +16,7 @@ import org.json.JSONException;
 public class MoviePosterWriter implements RestApiWriterInterface {
 
     String movieString;
+    String movieYear;
 
     MoviePosterWriter() {
     }
