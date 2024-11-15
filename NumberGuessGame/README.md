@@ -21,6 +21,6 @@ The `JAVA PROJECTS` view allows you to manage your dependencies. More details ca
 
 a short reflection (2-3 sentences) on whether or not you used recursion (why or why not), what you had trouble with, how you overcame those troubles, and what would you do more if you had more time. 
 
-I didn't use recursion because the code for iterative loops was easier to follow and manage. One challenge was making sure all the errors and exceptions were caught, especially when handling non-integer inputs. I would create Games in seperate classes and create a final score after multiple rounds
+I didn't use recursion because the code for iterative loops was easier to follow and manage. One challenge was making sure all the errors and exceptions were caught, especially when handling non-integer inputs. I would create Games in seperate classes and create a final score after multiple rounds 
 
 

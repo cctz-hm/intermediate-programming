@@ -3,12 +3,15 @@
 import java.util.Random;
 import java.util.Scanner;
 
+
 public class App {
     public static void main(String[] args) throws Exception {
         Random r = new Random();
         Scanner sc = new Scanner(System.in);
         int computerRange = 0;
         int counter = 0;
+
+        
 
         System.out.println("Enter range:");
 
@@ -61,5 +64,7 @@ public class App {
         }
         sc.close();
     }
+
+    
 
 }
