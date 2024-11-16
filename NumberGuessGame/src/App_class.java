@@ -4,10 +4,10 @@ import java.util.Random;
 import java.util.Scanner;
 
 class Game {
-     private int computerRange;
-     private int computerNumber;
-     private int guessCount;
-     private Scanner sc;
+     int computerRange;
+     int computerNumber;
+     int guessCount;
+     Scanner sc;
  
      public Game(int range, Scanner scanner) {
          this.computerRange = range;
@@ -51,8 +51,8 @@ class Game {
  }
 
 class BestOfThree {
-     private int range;
-     private Scanner sc;
+    int range;
+    Scanner sc;
  
      public BestOfThree(int range, Scanner sc) {
          this.range = range;
