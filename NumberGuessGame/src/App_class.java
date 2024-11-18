@@ -3,6 +3,7 @@
 import java.util.Random;
 import java.util.Scanner;
 
+// Game class that controls the variables needed in the Game 
 class Game {
      int computerRange;
      int computerNumber;
@@ -17,6 +18,7 @@ class Game {
          this.guessCount = 0;
      }
  
+     // Play function that controls the cases when entering a range
      public int play() {
          System.out.println("The computer has chosen a number. Start Guessing!");
          while (true) {
@@ -50,6 +52,7 @@ class Game {
      }
  }
 
+// BestOfThree class that controls the larger game with the three rounds
 class BestOfThree {
     int range;
     Scanner sc;
@@ -59,6 +62,7 @@ class BestOfThree {
          this.sc= sc;
      }
  
+     // Play function that controls the scoring of the game and starts new game
      public int Play() {
          int bestScore = 10000;
  
@@ -76,6 +80,7 @@ class BestOfThree {
  }
  
 
+// Class for the where you run the code
 class App_class {
      public static void main(String[] args) {
           Scanner sc = new Scanner(System.in);
@@ -95,7 +100,8 @@ class App_class {
                   sc.next();
               }
           }
-  
+          
+          // initializing the game
           BestOfThree bestOfThree = new BestOfThree(computerRange, sc);
           int bestGameScore = bestOfThree.Play();
           
