@@ -148,6 +148,9 @@ The best game score was: 3 guesses.
 
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9bcc8b15f9e49d593517edf61258f41a207b8931
 
 
