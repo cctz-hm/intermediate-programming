@@ -9,6 +9,7 @@ class Game {
      int computerNumber;
      int guessCount;
      Scanner sc;
+     ArrayList<Integer> pastGuesses = new ArrayList<Integer>();
  
      public Game(int range, Scanner scanner) {
          this.computerRange = range;
@@ -36,11 +37,17 @@ class Game {
                  sc.next(); 
                  continue;
              }
- 
+              
+              if (pastGuesses.contains(userGuess)) {
+                System.out.println("You already guessed " + userGuess + ". Try something else.");
+                continue;
+            }
+
+             pastGuesses.add(userGuess);
              guessCount++; 
  
              if (userGuess == computerNumber) {
-                 System.out.println("Correct. You got it in " + guessCount + " guesses.");
+                 System.out.println("Correct. You got it in " + guessCount + " guesses.\n Your guesses: " + pastGuesses");
                  break;
              } else if (userGuess > computerNumber) {
                  System.out.println("The number is smaller than " + userGuess);
@@ -48,6 +55,7 @@ class Game {
                  System.out.println("The number is larger than " + userGuess);
              }
          }
+          
          return guessCount; 
      }
  }
