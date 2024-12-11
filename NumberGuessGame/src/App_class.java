@@ -2,6 +2,7 @@
 
 import java.util.Random;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 // Game class that controls the variables needed in the Game 
 class Game {
@@ -37,7 +38,7 @@ class Game {
                  sc.next(); 
                  continue;
              }
-              
+
               if (pastGuesses.contains(userGuess)) {
                 System.out.println("You already guessed " + userGuess + ". Try something else.");
                 continue;
@@ -45,9 +46,11 @@ class Game {
 
              pastGuesses.add(userGuess);
              guessCount++; 
+
+             //add here i think
  
              if (userGuess == computerNumber) {
-                 System.out.println("Correct. You got it in " + guessCount + " guesses.\n Your guesses: " + pastGuesses");
+                System.out.println("Correct. You got it in " + guessCount + " guesses.\n Your guesses: " + pastGuesses);
                  break;
              } else if (userGuess > computerNumber) {
                  System.out.println("The number is smaller than " + userGuess);
