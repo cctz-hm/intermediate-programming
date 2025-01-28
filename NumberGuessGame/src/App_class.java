@@ -3,6 +3,8 @@
 import java.util.Random;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.HashMap;
+
 
 // Game class that controls the variables needed in the Game 
 class Game {
@@ -11,6 +13,7 @@ class Game {
      int guessCount;
      Scanner sc;
      ArrayList<Integer> pastGuesses = new ArrayList<Integer>();
+
  
      public Game(int range, Scanner scanner) {
          this.computerRange = range;
@@ -47,7 +50,6 @@ class Game {
              pastGuesses.add(userGuess);
              guessCount++; 
 
-             //add here i think
  
              if (userGuess == computerNumber) {
                 System.out.println("Correct. You got it in " + guessCount + " guesses.\n Your guesses: " + pastGuesses);
@@ -91,11 +93,28 @@ class BestOfThree {
  }
  
 
-// Class for the where you run the code
 class App_class {
-     public static void main(String[] args) {
+     public static void main(String[] args) throws Exception {
           Scanner sc = new Scanner(System.in);
           int computerRange = 0;
+          FileSave fileSave;
+
+          fileSave = new FileSave("NumberGuessGameResults.csv");
+
+          System.out.print("Enter your username: ");
+          String username = sc.next();
+
+          HashMap<String, String> results = fileSave.getResults();
+          String pastScores;
+
+        // see if user exists
+          if (results.containsKey(username)) {
+            System.out.println("Welcome back, " + username);
+            pastScores = results.get(username); 
+        } else {
+            System.out.println("Welcome, " + username);
+            pastScores = ""; 
+        }
   
           System.out.println("Enter a positive integer range for the game:");
           while (true) {
@@ -115,10 +134,21 @@ class App_class {
           // initializing the game
           BestOfThree bestOfThree = new BestOfThree(computerRange, sc);
           int bestGameScore = bestOfThree.Play();
+
           
-          System.out.println("The best game score was: " + bestGameScore + " guesses.");
+          System.out.println("The best game score for '" + username + "' was: " + bestGameScore + " guesses.");
+          
+          // Append the new score to past scores
+          if (!pastScores.isEmpty()) {
+            pastScores += ",";
+        } pastScores += bestGameScore;
+        
+        fileSave.updateResult(username, pastScores);
+        
+          
           sc.close();
       }
      
 }
+
 
