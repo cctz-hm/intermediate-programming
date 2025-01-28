@@ -138,10 +138,17 @@ class App_class {
           
           System.out.println("The best game score for '" + username + "' was: " + bestGameScore + " guesses.");
           
-          // Append the new score to past scores
-          if (!pastScores.isEmpty()) {
-            pastScores += ",";
-        } pastScores += bestGameScore;
+        if (!pastScores.isEmpty()) {
+            int oldBestScore = Integer.parseInt(pastScores.trim()); //removes extra spaces, string to int
+            if (bestGameScore < oldBestScore) {
+                System.out.println("New best score.");
+                pastScores = String.valueOf(bestGameScore); 
+            } else {
+                System.out.println("Your new score is not better than your previous best.");
+            }
+        } else {
+            pastScores = String.valueOf(bestGameScore);
+        }
         
         fileSave.updateResult(username, pastScores);
         

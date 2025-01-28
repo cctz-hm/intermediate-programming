@@ -48,7 +48,6 @@ public class FileSave {
     // update 1 key: value in results
     // then writes to file
     public void updateResult(String key, String value) throws Exception {
-        /* YOUR CODE HERE: Change this to actually update the results hashmap */
         results.put(key, value);
         writeResults();
     }

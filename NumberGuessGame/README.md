@@ -1,22 +1,3 @@
-## Getting Started
-
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
-
-## Folder Structure
-
-The workspace contains two folders by default, where:
-
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
-
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
-
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
-
 ## Reflection 
 
 a short reflection (2-3 sentences) on whether or not you used recursion (why or why not), what you had trouble with, how you overcame those troubles, and what would you do more if you had more time. 
@@ -143,5 +124,52 @@ Correct. You got it in 3 guesses.
 The best game score was: 3 guesses.
 ```
 
+## Cases after Hashmap 
 
+### Case 1: New User 
+
+'''
+Enter your username: user2
+Welcome, user2
+'''
+
+### Case 2: Existing User 
+
+'''
+Enter your username: test 
+Welcome back, test
+'''
+
+### Case 3: Score is better than before 
+'''
+The best game score for 'test' was: 1 guesses.
+New best score! Updating your record.
+'''  
+
+### Case 4: Score is not better than before 
+'''
+The best game score for 'test' was: 2 guesses.
+Your new score is not better than your previous best.
+'''
+
+
+
+## Getting Started
+
+Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+
+## Folder Structure
+
+The workspace contains two folders by default, where:
+
+- `src`: the folder to maintain sources
+- `lib`: the folder to maintain dependencies
+
+Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+
+> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+
+## Dependency Management
+
+The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
 
