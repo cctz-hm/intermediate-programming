@@ -1,5 +1,9 @@
+import processing.core.PApplet;
+
 public class App {
     public static void main(String[] args) throws Exception {
-        System.out.println("Hello, World!");
+        String[] processingArgs = { "ShoppingGame" };
+        ShoppingGameUI game = new ShoppingGameUI();
+        PApplet.runSketch(processingArgs, game);
     }
 }

@@ -6,6 +6,7 @@ class Item {
     protected String brand;
     protected double[] possiblePrices;
     protected String[] possibleBrands;
+    protected boolean updated;
 
     public Item(String name, double initialPrice, String initialBrand, double[] possiblePrices, String[] possibleBrands) {
         this.name = name;
@@ -13,6 +14,7 @@ class Item {
         this.brand = initialBrand;
         this.possiblePrices = possiblePrices;
         this.possibleBrands = possibleBrands;
+        this.updated = false;
     }
 
     public String getName() {
@@ -25,6 +27,14 @@ class Item {
 
     public String getBrand() {
         return brand;
+    }
+
+    public boolean isUpdated() { 
+        return updated; 
+    }
+
+    public void setUpdated(boolean state) { 
+        updated = state; 
     }
 
 
@@ -49,6 +59,7 @@ class SupplyItem extends Item {
         int index = random.nextInt(possibleBrands.length);
         this.brand = possibleBrands[index];
         this.price = possiblePrices[index];
+        this.updated = true;
     }
 }
 
@@ -72,6 +83,7 @@ class EssentialItem extends Item {
     }
 }
 
+
 class Store {
     private List<Item> items;
 
@@ -85,9 +97,9 @@ class Store {
         items.add(new FoodItem("Water", 3.64, "Walmart", new double[]{3.64, 5.79}, new String[]{"Walmart", "Whole foods"}));
         items.add(new SupplyItem("Shirt", 20.00, "Target", new double[]{20.00, 45.00}, new String[]{"Target", "Bloomingdale"}));
         items.add(new SupplyItem("Pants", 25.99, "Target", new double[]{25.99, 60.00}, new String[]{"Target", "Bloomingdale"}));
-        items.add(new SupplyItem("Computer", 184.99, "Target", new double[]{194.99, 299.00}, new String[]{"Target", "Bloomingdale"}));
+        //items.add(new SupplyItem("Computer", 184.99, "Target", new double[]{194.99, 299.00}, new String[]{"Target", "Bloomingdale"}));
         items.add(new SupplyItem("Books", 3.00, "Target", new double[]{3.00, 15.00}, new String[]{"Target", "Bloomingdale"}));
-        items.add(new NonEssentialItem("TV", 119.99, "Target", new double[]{119.99, 1999.00}, new String[]{"Target", "Best Buy"}));
+        //items.add(new NonEssentialItem("TV", 119.99, "Target", new double[]{119.99, 1999.00}, new String[]{"Target", "Best Buy"}));
         items.add(new NonEssentialItem("Soccer Ball", 20.00, "Target", new double[]{20.00, 45.00}, new String[]{"Target", "Bloomingdale"}));
         items.add(new EssentialItem("Toothpaste", 1.97, "Target", new double[]{1.97, 2.59}, new String[]{"Target", "Bloomingdale"}));
         items.add(new EssentialItem("Toiet Paper", 5.68, "Target", new double[]{5.68, 6.99}, new String[]{"Target", "Bloomingdale"}));
@@ -172,7 +184,7 @@ public class ShoppingGame {
                     System.out.print("Invalid choice, please enter a number between 0 and " + 15 + ": ");
                 }
             } else {
-                scanner.next(); // Consume the non-integer input
+                scanner.next(); 
                 System.out.print("Invalid input. Please enter a number: ");
             }
         }
@@ -191,10 +203,10 @@ public class ShoppingGame {
         Map<Item, Integer> list = new LinkedHashMap<>();
         Random random = new Random();
         List<Item> allItems = store.getItems();
-        int numItems = random.nextInt(5) + 1; // Randomly decide how many items (1 to 5)
+        int numItems = random.nextInt(5) + 1; // randomly 1 to 5
         while (list.size() < numItems) {
             Item item = allItems.get(random.nextInt(allItems.size()));
-            int quantity = random.nextInt(3) + 1; // Randomly decide how many units (1 to 3)
+            int quantity = random.nextInt(3) + 1; // randomly 1 to 3
             if (!list.containsKey(item)) {
                 list.put(item, quantity);
             }
