@@ -113,7 +113,7 @@ class Store {
 
     public void updateRandomItem() {
         Random random = new Random();
-        // Filter for only Non-Essential and Supply items
+        // only non-essential and supply items
         List<Item> updatableItems = new ArrayList<>();
         for (Item item : items) {
             if (item instanceof NonEssentialItem || item instanceof SupplyItem) {
@@ -159,14 +159,14 @@ public class ShoppingGame {
             Item selectedItem = items.get(choice - 1);
             if (budget >= selectedItem.getPrice()) {
                 total += selectedItem.getPrice();
-                budget -= selectedItem.getPrice(); // Update budget after purchase
+                budget -= selectedItem.getPrice(); // update budget after purchase
                 cart.put(selectedItem.getName(), cart.getOrDefault(selectedItem.getName(), 0) + 1);
             } else {
                 System.out.println("Not enough budget to buy " + selectedItem.getName());
             }
 
-            store.updateRandomItem(); // Randomly update items after each selection
-            displayShoppingList(requiredItems); // Show the shopping list after every item selection
+            store.updateRandomItem(); // randomly update items after each selection
+            displayShoppingList(requiredItems); // show the shopping list after every item selection
         }
 
         displayCheckoutSummary(cart, total, budget);

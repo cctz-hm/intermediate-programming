@@ -50,21 +50,25 @@ public class ShoppingGameUI extends PApplet {
         List<Item> items = store.getItems();
         float boxWidth = 300; 
         int yPos = 20;
+        fill(0);
+        textSize(14);
+        text("Instructions: \n Buy items, following the shopping list, from the list on the left side. \n As you buy, the brands and prices will change. \n Try to fulfill the list and checkout when you are ready. \n Remember, you have a budget.", 375, 50);
         for (int i = 0; i < items.size(); i++) {
             Item item = items.get(i);
-
             if (item.isUpdated()) {
                 fill(100, 250, 150); 
             } else {
                 fill(240); 
             }
-    
+
             rect(20, yPos, boxWidth, 40); 
             fill(0);
             text(i + 1 + ". " + item.getName() + " - $" + item.getPrice() + ", " + item.getBrand(), 30, yPos + 25);
             yPos += 60; 
 
             item.setUpdated(false);
+
+
         }
     }
     
@@ -133,12 +137,12 @@ public class ShoppingGameUI extends PApplet {
     }
 
     public void mousePressed() {
-        // Check exit button
+        // exit button
         if (mouseX >= 800 && mouseX <= 900 && mouseY >= height - 50 && mouseY <= height) {
             exit();
         }
 
-        // Check checkout button
+        // checkout button
         if (mouseX >= width - 110 && mouseX <= width - 10 && mouseY >= height - 50 && mouseY <= height) {
             if (checkListFulfillment()) {
                 check = 1;
@@ -153,9 +157,11 @@ public class ShoppingGameUI extends PApplet {
             if (mouseY >= 20 + i * 60 && mouseY < 60 + i * 60 && mouseX >= 20 && mouseX <= 320) {
                 selectedItemIndex = i;
                 processItemSelection(store.getItems().get(i));
+                store.updateRandomItem(); 
                 return;
+                
             }
-            store.updateRandomItem();
+            
         }
     }
 
