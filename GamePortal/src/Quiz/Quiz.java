@@ -17,10 +17,14 @@ package Quiz;
 
 import java.io.File;
 import java.util.Scanner;
+
+import Game.ErrorCheck;
 import Game.Game;
+import Game.GameWriteable;
+import processing.core.PApplet;
 
 
-public class Quiz implements Game{
+public class Quiz implements GameWriteable{
         static Scanner sc = new Scanner(System.in);
 
         public static void main(String[] args) throws Exception {
@@ -114,20 +118,12 @@ public class Quiz implements Game{
                 // requires 1 to keep going
                 System.out.println("Which Christmas character are you and what music you should listen to?");
                 System.out.println("You get to choose numbers 1-4 for every question. Enter '1' to play!");
-                
-                if (!sc.hasNextInt()){
-                        System.out.println("Unidentifiable input. Please enter '1' to play");
-                        sc.next();
-                        gameIntro();
-                }
-                
-                int play = sc.nextInt();
+
+                int play = ErrorCheck.getInt(sc);
                 if (play != 1) {
                         System.out.println("Unidentifiable input. Please enter '1' to play");
-                        sc.next();
                         gameIntro();
-                }
-                
+                }                
         }
 
         // returns the index that is the max
@@ -146,25 +142,33 @@ public class Quiz implements Game{
 
         @Override
         public String getGameName() {
-                // TODO Auto-generated method stub
-                throw new UnsupportedOperationException("Unimplemented method 'getGameName'");
+                return "Christmas Music Quiz";
         }
 
         @Override
         public int play() {
-                // TODO Auto-generated method stub
-                throw new UnsupportedOperationException("Unimplemented method 'play'");
+                try {
+                        main(new String[]{}); // fixed
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                return 0;   
         }
 
         @Override
         public String getScore() {
-                // TODO Auto-generated method stub
-                throw new UnsupportedOperationException("Unimplemented method 'getScore'");
+                return "N/A"; 
         }
 
         @Override
         public void writeHighScore(File f) {
-                // TODO Auto-generated method stub
-                throw new UnsupportedOperationException("Unimplemented method 'writeHighScore'");
+                System.out.println("Thanks for playing the quiz! No high score recorded.");
         }
+
+        @Override
+        public boolean isHighScore(String score, String currentHighScore) {
+                return false; 
+        }
+
+
 }

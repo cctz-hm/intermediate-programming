@@ -4,7 +4,7 @@ import java.io.File;
 public interface Game {
     String getGameName();
 
-    void play(); // must be able to play a game
+    int play(); // must be able to play a game
 
     String getScore(); // get a score - if there is no "score" you can return return "N/A" or something.
 

@@ -1,12 +1,18 @@
+package Game;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import javax.management.Notification;
+
 import Game.Game;
 import Quiz.Quiz;
 import Game.ErrorCheck;
 import Store.ShoppingGameUI;
+import NumberGuess.NumberGuessGame;
+
 
 public class GamePortal {
     static Scanner sc = new Scanner(System.in);
@@ -20,7 +26,7 @@ public class GamePortal {
             
             System.out.println("Which game would you like to play?");
             printGameChoices();
-            Store g = getGameChoice();
+            Game g = getGameChoice();
             System.out.println("You're playing " + g.getGameName());
 
             g.play();
@@ -38,13 +44,13 @@ public class GamePortal {
     public static void loadGames() {
         games.clear();
         games.add(new NumberGuessGame());
-        games.add(new StoreGame());
+        games.add(new ShoppingGameUI());
         games.add(new Quiz());
     }
 
     public static void printGameChoices() {
         int n = 1;
-        for (Store s : games) {
+        for (Game s : games) {
             System.out.println("[" + (n++) + "]: " + s.getGameName());
         }
     }
@@ -52,7 +58,7 @@ public class GamePortal {
     /*
      * Takes in user input for printing out all games in
      */
-    public static Store getGameChoice() {
+    public static Game getGameChoice() {
         int choice = ErrorCheck.getInt(sc);
         // for it to be numbered, we can't use hashmaps.
         while (choice < 1 || choice > games.size()) {

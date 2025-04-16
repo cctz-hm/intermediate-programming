@@ -4,17 +4,17 @@ package NumberGuess;
 
 import java.util.Random;
 import java.util.Scanner;
-
-import Game.Game;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import Game.Game;
+import Game.GameWriteable;
+
 
 
 // Game class that controls the variables needed in the Game 
-class NumberGame implements Game {
+class NumberGame implements GameWriteable {
      int computerRange;
      int computerNumber;
      int guessCount;
@@ -72,22 +72,26 @@ class NumberGame implements Game {
      }
 
      @Override
-     public String getGameName() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getGameName'");
-     }
+    public String getGameName() {
+        return "Number Guess";
+    }
+
+
+    @Override
+    public String getScore() {
+        return String.valueOf(guessCount);
+    }
 
      @Override
-     public String getScore() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getScore'");
-     }
+    public boolean isHighScore(String newScore, String oldScore) {
+        if (oldScore == null || oldScore.equals("N/A")) return true;
+        try {
+            return Integer.parseInt(newScore) < Integer.parseInt(oldScore);
+        } catch (NumberFormatException e) {
+            return true;
+        }}
 
-     @Override
-     public void writeHighScore(File f) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'writeHighScore'");
-     }
+   
  }
 
 // BestOfThree class that controls the larger game with the three rounds
@@ -118,7 +122,7 @@ class BestOfThree {
  }
  
 
-class App_class {
+public class App_class {
      public static void main(String[] args) throws Exception {
           Scanner sc = new Scanner(System.in);
           int computerRange = 0;

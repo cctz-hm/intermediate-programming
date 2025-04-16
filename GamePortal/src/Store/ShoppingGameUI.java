@@ -3,11 +3,12 @@ import java.io.File;
 import java.util.*;
 
 import Game.Game;
+import Game.GameWriteable;
 import processing.core.PApplet;
 import processing.core.PSketch;
 
 
-public class ShoppingGameUI extends PApplet implements Game{
+public class ShoppingGameUI extends PApplet implements GameWriteable{
     Store store;
     Map<String, Integer> cart;
     double total;
@@ -206,26 +207,29 @@ public class ShoppingGameUI extends PApplet implements Game{
 
     @Override
     public String getGameName() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getGameName'");
+        return "Shopping Game";
     }
 
     @Override
     public int play() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'play'");
+        PApplet.runSketch(new String[]{"ShoppingGameUI"}, this);
+        return 0;
     }
 
     @Override
     public String getScore() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getScore'");
+        return "N/A";
     }
 
     @Override
     public void writeHighScore(File f) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'writeHighScore'");
+        System.out.println("Thanks for playing Shopping Game! No high score recorded.");
     }
+
+    @Override
+    public boolean isHighScore(String score, String currentHighScore) {
+        return false;
+    }
+
 }
 

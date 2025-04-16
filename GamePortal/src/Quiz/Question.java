@@ -5,6 +5,8 @@ A question class with Answers.
 */ 
 import java.util.Scanner;
 
+import Game.ErrorCheck;
+
 public class Question {
     // Fields
     String label;
@@ -24,19 +26,7 @@ public class Question {
                     this.possibleAnswers[i].label);
         }
 
-        if (!sc.hasNextInt()){
-            System.out.println("Enter a number");
-            sc.next();
-            return ask(sc);
-
-        }
-
-        int ans = sc.nextInt();
-        if(ans > 4 || ans < 1) {
-            System.out.println("Please enter a valid number that corresponds with one of the answers.");
-            sc.next();
-            return ask(sc);
-        } 
+        int ans = ErrorCheck.getIntInRange(sc, 1, 4);
         
         return possibleAnswers[ans - 1].cat;
     }

@@ -37,7 +37,6 @@ public class App {
 
         while (true) {
             int userGuess;
-            counter = counter++;
 
             if (sc.hasNextInt()) {
                 userGuess = sc.nextInt();
