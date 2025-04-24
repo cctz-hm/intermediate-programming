@@ -1,18 +1,12 @@
-## Getting Started
+# Descriptions of Games
+There are three games, NumberGuess, Quiz, and Store. The user can input a username which is then tracked into a Highscore.csv file as a leaderboard. 
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+## NumberGuess
+NumberGuess game allows the user to enter a range and then guess the number in little tries as possible. 
 
-## Folder Structure
+## Quiz
+The Quiz is matching user choices to a Christmas character and a genre of music. Users chose between 1 and 4 for the options and get an answer in the end. 
 
-The workspace contains two folders by default, where:
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
-
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
-
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+## Store
+You are randomly given a certain amount of money and a shopping list. Fulfill the shopping list with the items in the store. The items change brands and prices randomly so maximize your budget to fulfill the list. 
