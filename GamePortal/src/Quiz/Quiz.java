@@ -26,93 +26,102 @@ import processing.core.PApplet;
 
 public class Quiz implements GameWriteable{
         static Scanner sc = new Scanner(System.in);
+        private String username = "";
+        private String finalCharacterResult = "";
+
+
 
         public static void main(String[] args) throws Exception {
-                // Create Categories
-                Category elf = new Category("Elf/Hip Pop",
-                                "You are mischievous and overall funny. You should listen to more hip pop.", "Elf", "Hip Pop");              
-                
-                Category frosty = new Category("Frosty the Snowman/Jazz",
-                "You are laid back and relatively chill. You should listen to more jazz", "Frosty", "Jazz");
 
-                Category santa = new Category("Santa/Classical",
-                                "You can sometimes be dramatic but are overall classy and the face of events. You should listen to more classical", "Santa", "Classical");
-                Category grinch = new Category("Grinch/Rock", 
-                "You don't like going with the flow and are relatively rebellious. You should listen to more rock.", "Grinch", "Rock");
-
-                // Create Questions
-                Question q1 = new Question("It's 8 AM on Christmas morning, you just woke What is the first thing you do?");
-                // Attach Answers to Questions
-                q1.possibleAnswers[0] = new Answer("Rush to wake up my family.", elf);
-                q1.possibleAnswers[1] = new Answer("Open everyone's presents by myself", frosty);
-                q1.possibleAnswers[2] = new Answer("Slowly get up and make myself breakfast", santa);
-                q1.possibleAnswers[3] = new Answer("Go back to sleep—it's too early for this.", grinch);
-
-                Question q2 = new Question("It's been a few hours, and now you're very hungry. What do you do?");
-                // Attach Answers to Questions
-                q2.possibleAnswers[0] = new Answer("Drink a glass of ice cold eggnog.", grinch);
-                q2.possibleAnswers[1] = new Answer("Drink a mug of hot cocoa with marshmallows", elf);
-                q2.possibleAnswers[2] = new Answer("Snack on the gingerbread house I made yesterday", frosty);
-                q2.possibleAnswers[3] = new Answer("Have a few christmas decorated sugar cookies.", santa);
-
-                Question q3 = new Question("Its time for Christmas dinner! What song are you putting on?");
-                // Attach Answers to Questions
-                q3.possibleAnswers[0] = new Answer("Jingle Bell Rock.", elf);
-                q3.possibleAnswers[1] = new Answer("You're a Mean One, Mr. Grinch", grinch);
-                q3.possibleAnswers[2] = new Answer("Silent Night", santa);
-                q3.possibleAnswers[3] = new Answer("Last Christmas", frosty);
-
-                Question q4 = new Question("It's been a long day, and you just want to relax. What's your go-to Christmas movie to watch?");
-                // Attach Answers to Questions
-                q4.possibleAnswers[0] = new Answer("Home Alone", frosty);
-                q4.possibleAnswers[1] = new Answer("Love Actually", santa);
-                q4.possibleAnswers[2] = new Answer("The Nightmare Before Christmas", grinch);
-                q4.possibleAnswers[3] = new Answer("Elf", elf);
-
-                Question q5 = new Question("What time of day do you usually listen to music?");
-                // Attach Answers to Questions
-                q5.possibleAnswers[0] = new Answer("7-10AM", santa);
-                q5.possibleAnswers[1] = new Answer("11AM-4PM", frosty);
-                q5.possibleAnswers[2] = new Answer("4-8PM", elf);
-                q5.possibleAnswers[3] = new Answer("9PM and later", grinch);
-
-                Question q6 = new Question("What is your favorite color?");
-                // Attach Answers to Questions
-                q6.possibleAnswers[0] = new Answer("Shades of green, blue, or purple", frosty);
-                q6.possibleAnswers[1] = new Answer("Black or white", grinch);
-                q6.possibleAnswers[2] = new Answer("Shades of red, yellow, or orange", santa);
-                q6.possibleAnswers[3] = new Answer("Shades of brown or grey", elf);
-
-                Question q7 = new Question("What is your favorite season of the year?");
-                // Attach Answers to Questions
-                q7.possibleAnswers[0] = new Answer("Spring", santa);
-                q7.possibleAnswers[1] = new Answer("Summer", grinch);
-                q7.possibleAnswers[2] = new Answer("Autumn", elf);
-                q7.possibleAnswers[3] = new Answer("Winter", frosty);
-
-                Question q8 = new Question("What is your favorite dessert?");
-                // Attach Answers to Questions
-                q8.possibleAnswers[0] = new Answer("Cake", elf);
-                q8.possibleAnswers[1] = new Answer("Ice cream", frosty);
-                q8.possibleAnswers[2] = new Answer("Cookies", santa);
-                q8.possibleAnswers[3] = new Answer("I don't eat dessert", grinch);
-              
-                
-                // For each question, ask, read input, store answer.
-                gameIntro();
-                Question[] qList = { q1, q2, q3, q4, q5, q6, q7, q8};
-                for (Question q : qList) {
-                        Category c = q.ask(sc);
-                        c.points++;
-                }
-                // Get most common ctegory from the questions asked
-                // Return Category
-                Category[] cList = {elf, frosty, santa, grinch };
-                int index = getMostPopularCatIndex(cList);
-                System.out.println("If you were Christmas character, you would be " + cList[index].output1 + ". Your music genre is " + cList[index].output2);
-                System.out.println(cList[index].description);
+                Quiz quiz = new Quiz();
+                quiz.run();
 
         }
+        public void run() {
+            Scanner input = new Scanner(System.in);
+            System.out.print("Enter your username: ");
+            username = input.nextLine();
+            
+                // Create Categories
+                Category elf = new Category("Elf/Hip Pop", "You are mischievous and overall funny. You should listen to more hip pop.", "Elf", "Hip Pop");
+                Category frosty = new Category("Frosty the Snowman/Jazz", "You are laid back and relatively chill. You should listen to more jazz", "Frosty", "Jazz");
+                Category santa = new Category("Santa/Classical", "You can sometimes be dramatic but are overall classy and the face of events. You should listen to more classical", "Santa", "Classical");
+                Category grinch = new Category("Grinch/Rock", "You don't like going with the flow and are relatively rebellious. You should listen to more rock.", "Grinch", "Rock");
+            
+                // Create and ask questions
+                Question[] qList = {
+                    new Question("It's 8 AM on Christmas morning, you just woke What is the first thing you do?"),
+                    new Question("It's been a few hours, and now you're very hungry. What do you do?"),
+                    new Question("Its time for Christmas dinner! What song are you putting on?"),
+                    new Question("It's been a long day, and you just want to relax. What's your go-to Christmas movie to watch?"),
+                    new Question("What time of day do you usually listen to music?"),
+                    new Question("What is your favorite color?"),
+                    new Question("What is your favorite season of the year?"),
+                    new Question("What is your favorite dessert?")
+                };
+            
+                // Link answers
+                qList[0].possibleAnswers = new Answer[]{
+                    new Answer("Rush to wake up my family.", elf),
+                    new Answer("Open everyone's presents by myself", frosty),
+                    new Answer("Slowly get up and make myself breakfast", santa),
+                    new Answer("Go back to sleep—it's too early for this.", grinch)
+                };
+                qList[1].possibleAnswers = new Answer[]{
+                    new Answer("Drink a glass of ice cold eggnog.", grinch),
+                    new Answer("Drink a mug of hot cocoa with marshmallows", elf),
+                    new Answer("Snack on the gingerbread house I made yesterday", frosty),
+                    new Answer("Have a few christmas decorated sugar cookies.", santa)
+                };
+                qList[2].possibleAnswers = new Answer[]{
+                    new Answer("Jingle Bell Rock.", elf),
+                    new Answer("You're a Mean One, Mr. Grinch", grinch),
+                    new Answer("Silent Night", santa),
+                    new Answer("Last Christmas", frosty)
+                };
+                qList[3].possibleAnswers = new Answer[]{
+                    new Answer("Home Alone", frosty),
+                    new Answer("Love Actually", santa),
+                    new Answer("The Nightmare Before Christmas", grinch),
+                    new Answer("Elf", elf)
+                };
+                qList[4].possibleAnswers = new Answer[]{
+                    new Answer("7-10AM", santa),
+                    new Answer("11AM-4PM", frosty),
+                    new Answer("4-8PM", elf),
+                    new Answer("9PM and later", grinch)
+                };
+                qList[5].possibleAnswers = new Answer[]{
+                    new Answer("Shades of green, blue, or purple", frosty),
+                    new Answer("Black or white", grinch),
+                    new Answer("Shades of red, yellow, or orange", santa),
+                    new Answer("Shades of brown or grey", elf)
+                };
+                qList[6].possibleAnswers = new Answer[]{
+                    new Answer("Spring", santa),
+                    new Answer("Summer", grinch),
+                    new Answer("Autumn", elf),
+                    new Answer("Winter", frosty)
+                };
+                qList[7].possibleAnswers = new Answer[]{
+                    new Answer("Cake", elf),
+                    new Answer("Ice cream", frosty),
+                    new Answer("Cookies", santa),
+                    new Answer("I don't eat dessert", grinch)
+                };
+            
+                gameIntro();
+                for (Question q : qList) {
+                    Category c = q.ask(sc);
+                    c.points++;
+                }
+            
+                Category[] cList = {elf, frosty, santa, grinch};
+                int index = getMostPopularCatIndex(cList);
+                finalCharacterResult = cList[index].output1;
+                System.out.println("If you were Christmas character, you would be " + cList[index].output1 + ". Your music genre is " + cList[index].output2);
+                System.out.println(cList[index].description);
+            }
 
         public static void gameIntro() {
                 // requires 1 to keep going
@@ -127,7 +136,7 @@ public class Quiz implements GameWriteable{
         }
 
         // returns the index that is the max
-        // the tie breaker is the first Category that has the count is the "max" :/ 
+
         public static int getMostPopularCatIndex(Category[] counts) {
                 int maxCount = 0;
                 int maxIndex = 0;
@@ -148,7 +157,7 @@ public class Quiz implements GameWriteable{
         @Override
         public int play() {
                 try {
-                        main(new String[]{}); // fixed
+                        run();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -157,18 +166,25 @@ public class Quiz implements GameWriteable{
 
         @Override
         public String getScore() {
-                return "N/A"; 
+                return finalCharacterResult;
         }
 
         @Override
-        public void writeHighScore(File f) {
-                System.out.println("Thanks for playing the quiz! No high score recorded.");
+        public String getUsername(){
+            return username;
+            
         }
 
         @Override
         public boolean isHighScore(String score, String currentHighScore) {
+            if (currentHighScore == null) {
+                return true;
+            } 
+            if (score != currentHighScore){
+                return true;
+
+            }
                 return false; 
         }
-
 
 }

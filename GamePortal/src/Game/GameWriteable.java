@@ -24,6 +24,7 @@ public interface GameWriteable extends Game {
         // score.
         String score = getScore();
         String highScore = getBestScore(f);
+        String username = getUsername();
         System.out.println("Thanks for playing! Your score was " + score);
 
         if (isHighScore(score, highScore)) {
@@ -36,13 +37,14 @@ public interface GameWriteable extends Game {
                     // rewrite all lines except the line with the game name
                     String line = myReader.nextLine();
                     String[] data = line.split(",");
-                    if (!data[0].equals(getGameName())) {
+                    if (data.length < 3 || !data[0].equals(getGameName())) {
                         newFile += line + "\n";
                     }
                 }
+                myReader.close();
                 // replace the Game's line with the new high score
                 // puts it at the end of the file
-                newFile += getGameName() + "," + score + "\n";
+                newFile += getGameName() + "," + username + "," + score + "\n";
                 // write the new file
                 FileWriter myWriter = new FileWriter(f);
                 myWriter.write(newFile);
@@ -61,19 +63,19 @@ public interface GameWriteable extends Game {
             Scanner myReader = new Scanner(highscoreFile);
             while (myReader.hasNextLine()) {
                 String[] data = myReader.nextLine().split(",");
-                if (data.length != 2 || !data[0].equals(getGameName())) {
+                if (data.length < 3 || !data[0].equals(getGameName())) {
                     // bad line or not this game, skip
                     continue;
                 }
-                highScore = data[1];
+                highScore = data[2]; // score is in the third column
                 break;
-            }
+                
+            } myReader.close();
         } catch (FileNotFoundException e) {
             try {
                 highscoreFile.createNewFile();
             } catch (IOException ioException) {
-                System.err
-                        .println("Could not create file " + highscoreFile.getName() + " in " + highscoreFile.getPath());
+                System.err.println("Could not create file " + highscoreFile.getName() + " in " + highscoreFile.getPath());
             }
         }
         return highScore;

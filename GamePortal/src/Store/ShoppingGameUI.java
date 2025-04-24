@@ -1,11 +1,14 @@
 package Store;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 
 import Game.Game;
 import Game.GameWriteable;
 import processing.core.PApplet;
 import processing.core.PSketch;
+import java.util.concurrent.CountDownLatch;
 
 
 public class ShoppingGameUI extends PApplet implements GameWriteable{
@@ -16,6 +19,10 @@ public class ShoppingGameUI extends PApplet implements GameWriteable{
     Map<Item, Integer> requiredItems;
     int selectedItemIndex = -1;
     int check = 0;
+    private String username = "";
+    private boolean fulfilledShoppingList = false;
+    CountDownLatch latch;
+
 
 
     public void settings() {
@@ -144,11 +151,14 @@ public class ShoppingGameUI extends PApplet implements GameWriteable{
     public void mousePressed() {
         // exit button
         if (mouseX >= 800 && mouseX <= 900 && mouseY >= height - 50 && mouseY <= height) {
-            exit();
+            System.out.println("exiting");
+            latch.countDown();
+            //exit();
         }
 
         // checkout button
         if (mouseX >= width - 110 && mouseX <= width - 10 && mouseY >= height - 50 && mouseY <= height) {
+            fulfilledShoppingList = checkListFulfillment();
             if (checkListFulfillment()) {
                 check = 1;
                 println("All items purchased correctly!");
@@ -212,23 +222,40 @@ public class ShoppingGameUI extends PApplet implements GameWriteable{
 
     @Override
     public int play() {
+        Scanner input = new Scanner(System.in);
+        System.out.print("Enter your username: ");
+        username = input.nextLine();
         PApplet.runSketch(new String[]{"ShoppingGameUI"}, this);
+        latch = new CountDownLatch(1);
+        try {
+            latch.await();
+        } catch (InterruptedException e){
+            e.printStackTrace();
+        }
         return 0;
+
     }
 
     @Override
     public String getScore() {
-        return "N/A";
+        return String.valueOf(fulfilledShoppingList);
     }
 
     @Override
-    public void writeHighScore(File f) {
-        System.out.println("Thanks for playing Shopping Game! No high score recorded.");
+    public String getUsername(){
+        return username;
+        
     }
 
     @Override
     public boolean isHighScore(String score, String currentHighScore) {
+
+        if (score != currentHighScore){
+            return true;
+        }
+
         return false;
+        
     }
 
 }

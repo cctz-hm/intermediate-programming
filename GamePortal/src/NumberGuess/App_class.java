@@ -82,6 +82,12 @@ class NumberGame implements GameWriteable {
         return String.valueOf(guessCount);
     }
 
+    @Override
+    public String getUsername(){
+        return "N/A";
+        
+    }
+
      @Override
     public boolean isHighScore(String newScore, String oldScore) {
         if (oldScore == null || oldScore.equals("N/A")) return true;

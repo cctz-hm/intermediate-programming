@@ -38,6 +38,12 @@ public class NumberGuessGame implements GameWriteable {
     }
 
     @Override
+    public String getUsername(){
+        return lastUsername;
+        
+    }
+
+    @Override
     public boolean isHighScore(String newScore, String oldScore) {
         if (oldScore == null || oldScore.equals("N/A")) return true;
         try {
@@ -47,8 +53,8 @@ public class NumberGuessGame implements GameWriteable {
         }
     }
 
-    @Override
+    //@Override
     public void writeHighScore(File f) {
-        GameWriteable.super.writeHighScore(f); // Uses default method
+        GameWriteable.super.writeHighScore(f); 
     }
 }
