@@ -10,3 +10,8 @@ The Quiz is matching user choices to a Christmas character and a genre of music.
 
 ## Store
 You are randomly given a certain amount of money and a shopping list. Fulfill the shopping list with the items in the store. The items change brands and prices randomly so maximize your budget to fulfill the list. 
+
+## AI Usage 
+https://chatgpt.com/share/680a81d7-24fc-800f-8aba-69682b6bd96d 
+
+ShoppingGameUI has a line of code from GPT that helps close/hide the window without terminating the terminal

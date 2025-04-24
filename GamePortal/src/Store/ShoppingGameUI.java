@@ -153,6 +153,7 @@ public class ShoppingGameUI extends PApplet implements GameWriteable{
         if (mouseX >= 800 && mouseX <= 900 && mouseY >= height - 50 && mouseY <= height) {
             System.out.println("exiting");
             latch.countDown();
+            surface.setVisible(false); //ChatGPT help suggestion
             //exit();
         }
 
@@ -225,8 +226,10 @@ public class ShoppingGameUI extends PApplet implements GameWriteable{
         Scanner input = new Scanner(System.in);
         System.out.print("Enter your username: ");
         username = input.nextLine();
+        latch = new CountDownLatch(1); 
+
         PApplet.runSketch(new String[]{"ShoppingGameUI"}, this);
-        latch = new CountDownLatch(1);
+        
         try {
             latch.await();
         } catch (InterruptedException e){
