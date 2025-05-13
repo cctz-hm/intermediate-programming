@@ -1,0 +1,10 @@
+{
+     "Name": "Teleport",
+     "Author": "cctz_hm",
+     "Version": "1.0.0",
+     "Description": "teleport back home",
+     "UniqueID": "cctz_hm.Teleport",
+     "EntryDll": "Teleport.dll",
+     "MinimumApiVersion": "4.0.0",
+     "UpdateKeys": []
+   }

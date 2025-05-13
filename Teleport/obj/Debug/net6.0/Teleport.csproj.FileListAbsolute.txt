@@ -1,0 +1,9 @@
+/Users/cctz/intermediate-programming/Teleport/bin/Debug/net6.0/Teleport.deps.json
+/Users/cctz/intermediate-programming/Teleport/bin/Debug/net6.0/Teleport.dll
+/Users/cctz/intermediate-programming/Teleport/obj/Debug/net6.0/Teleport.csproj.AssemblyReference.cache
+/Users/cctz/intermediate-programming/Teleport/obj/Debug/net6.0/Teleport.GeneratedMSBuildEditorConfig.editorconfig
+/Users/cctz/intermediate-programming/Teleport/obj/Debug/net6.0/Teleport.AssemblyInfoInputs.cache
+/Users/cctz/intermediate-programming/Teleport/obj/Debug/net6.0/Teleport.AssemblyInfo.cs
+/Users/cctz/intermediate-programming/Teleport/obj/Debug/net6.0/Teleport.csproj.CoreCompileInputs.cache
+/Users/cctz/intermediate-programming/Teleport/obj/Debug/net6.0/Teleport.sourcelink.json
+/Users/cctz/intermediate-programming/Teleport/obj/Debug/net6.0/Teleport.dll
