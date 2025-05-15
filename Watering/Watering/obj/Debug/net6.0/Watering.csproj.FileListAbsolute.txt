@@ -1,0 +1,9 @@
+/Users/cctz/intermediate-programming/Watering/Watering/bin/Debug/net6.0/Watering.deps.json
+/Users/cctz/intermediate-programming/Watering/Watering/bin/Debug/net6.0/Watering.dll
+/Users/cctz/intermediate-programming/Watering/Watering/obj/Debug/net6.0/Watering.csproj.AssemblyReference.cache
+/Users/cctz/intermediate-programming/Watering/Watering/obj/Debug/net6.0/Watering.GeneratedMSBuildEditorConfig.editorconfig
+/Users/cctz/intermediate-programming/Watering/Watering/obj/Debug/net6.0/Watering.AssemblyInfoInputs.cache
+/Users/cctz/intermediate-programming/Watering/Watering/obj/Debug/net6.0/Watering.AssemblyInfo.cs
+/Users/cctz/intermediate-programming/Watering/Watering/obj/Debug/net6.0/Watering.csproj.CoreCompileInputs.cache
+/Users/cctz/intermediate-programming/Watering/Watering/obj/Debug/net6.0/Watering.sourcelink.json
+/Users/cctz/intermediate-programming/Watering/Watering/obj/Debug/net6.0/Watering.dll
