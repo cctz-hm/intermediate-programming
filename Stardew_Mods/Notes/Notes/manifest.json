@@ -1,0 +1,10 @@
+{
+     "Name": "Notes",
+     "Author": "cctz_hm",
+     "Version": "1.0.0",
+     "Description": "press key to add custom notes to objects",
+     "UniqueID": "cctz_hm.Notes",
+     "EntryDll": "Notes.dll",
+     "MinimumApiVersion": "4.0.0",
+     "UpdateKeys": []
+   }

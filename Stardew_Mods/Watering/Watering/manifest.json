@@ -1,0 +1,10 @@
+{
+     "Name": "Watering",
+     "Author": "cctz_hm",
+     "Version": "1.0.0",
+     "Description": "watering plants in a certain radius",
+     "UniqueID": "cctz_hm.Wattering",
+     "EntryDll": "Watering.dll",
+     "MinimumApiVersion": "4.0.0",
+     "UpdateKeys": []
+   }

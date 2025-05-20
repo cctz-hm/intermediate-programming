@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "uFM1SFuYbc0=",
+  "success": true,
+  "projectFilePath": "/Users/cctz/intermediate-programming/Teleport/Teleport.csproj",
+  "expectedPackageFiles": [
+    "/Users/cctz/.nuget/packages/pathoschild.stardew.modbuildconfig/4.4.0/pathoschild.stardew.modbuildconfig.4.4.0.nupkg.sha512",
+    "/Users/cctz/.nuget/packages/microsoft.netcore.app.ref/6.0.36/microsoft.netcore.app.ref.6.0.36.nupkg.sha512",
+    "/Users/cctz/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.36/microsoft.aspnetcore.app.ref.6.0.36.nupkg.sha512"
+  ],
+  "logs": []
+}
