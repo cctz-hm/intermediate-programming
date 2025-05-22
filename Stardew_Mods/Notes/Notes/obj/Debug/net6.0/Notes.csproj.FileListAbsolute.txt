@@ -7,3 +7,12 @@
 /Users/cctz/intermediate-programming/Notes/Notes/obj/Debug/net6.0/Notes.csproj.CoreCompileInputs.cache
 /Users/cctz/intermediate-programming/Notes/Notes/obj/Debug/net6.0/Notes.sourcelink.json
 /Users/cctz/intermediate-programming/Notes/Notes/obj/Debug/net6.0/Notes.dll
+/Users/cctz/intermediate-programming/Stardew_Mods/Notes/Notes/obj/Debug/net6.0/Notes.csproj.AssemblyReference.cache
+/Users/cctz/intermediate-programming/Stardew_Mods/Notes/Notes/obj/Debug/net6.0/Notes.GeneratedMSBuildEditorConfig.editorconfig
+/Users/cctz/intermediate-programming/Stardew_Mods/Notes/Notes/obj/Debug/net6.0/Notes.AssemblyInfoInputs.cache
+/Users/cctz/intermediate-programming/Stardew_Mods/Notes/Notes/obj/Debug/net6.0/Notes.AssemblyInfo.cs
+/Users/cctz/intermediate-programming/Stardew_Mods/Notes/Notes/obj/Debug/net6.0/Notes.csproj.CoreCompileInputs.cache
+/Users/cctz/intermediate-programming/Stardew_Mods/Notes/Notes/obj/Debug/net6.0/Notes.sourcelink.json
+/Users/cctz/intermediate-programming/Stardew_Mods/Notes/Notes/obj/Debug/net6.0/Notes.dll
+/Users/cctz/intermediate-programming/Stardew_Mods/Notes/Notes/bin/Debug/net6.0/Notes.deps.json
+/Users/cctz/intermediate-programming/Stardew_Mods/Notes/Notes/bin/Debug/net6.0/Notes.dll

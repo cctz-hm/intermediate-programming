@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "/Users/cctz/intermediate-programming/Stardew_Mods/Notes/Notes/Notes.csproj": {}
+    "/Users/cctz/intermediate-programming/Stardew_Mods/Notes/Notes/tempCodeRunnerFile.csproj": {}
   },
   "projects": {
-    "/Users/cctz/intermediate-programming/Stardew_Mods/Notes/Notes/Notes.csproj": {
+    "/Users/cctz/intermediate-programming/Stardew_Mods/Notes/Notes/tempCodeRunnerFile.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/cctz/intermediate-programming/Stardew_Mods/Notes/Notes/Notes.csproj",
-        "projectName": "Notes",
-        "projectPath": "/Users/cctz/intermediate-programming/Stardew_Mods/Notes/Notes/Notes.csproj",
+        "projectUniqueName": "/Users/cctz/intermediate-programming/Stardew_Mods/Notes/Notes/tempCodeRunnerFile.csproj",
+        "projectName": "tempCodeRunnerFile",
+        "projectPath": "/Users/cctz/intermediate-programming/Stardew_Mods/Notes/Notes/tempCodeRunnerFile.csproj",
         "packagesPath": "/Users/cctz/.nuget/packages/",
         "outputPath": "/Users/cctz/intermediate-programming/Stardew_Mods/Notes/Notes/obj/",
         "projectStyle": "PackageReference",

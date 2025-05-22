@@ -43,11 +43,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/cctz/intermediate-programming/Notes/Notes/Notes.csproj",
+      "projectUniqueName": "/Users/cctz/intermediate-programming/Stardew_Mods/Notes/Notes/Notes.csproj",
       "projectName": "Notes",
-      "projectPath": "/Users/cctz/intermediate-programming/Notes/Notes/Notes.csproj",
+      "projectPath": "/Users/cctz/intermediate-programming/Stardew_Mods/Notes/Notes/Notes.csproj",
       "packagesPath": "/Users/cctz/.nuget/packages/",
-      "outputPath": "/Users/cctz/intermediate-programming/Notes/Notes/obj/",
+      "outputPath": "/Users/cctz/intermediate-programming/Stardew_Mods/Notes/Notes/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/cctz/.nuget/NuGet/NuGet.Config"

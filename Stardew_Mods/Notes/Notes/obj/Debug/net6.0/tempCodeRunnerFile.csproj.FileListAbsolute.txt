@@ -1,0 +1,9 @@
+/Users/cctz/intermediate-programming/Stardew_Mods/Notes/Notes/bin/Debug/net6.0/tempCodeRunnerFile.deps.json
+/Users/cctz/intermediate-programming/Stardew_Mods/Notes/Notes/bin/Debug/net6.0/tempCodeRunnerFile.dll
+/Users/cctz/intermediate-programming/Stardew_Mods/Notes/Notes/obj/Debug/net6.0/tempCodeRunnerFile.csproj.AssemblyReference.cache
+/Users/cctz/intermediate-programming/Stardew_Mods/Notes/Notes/obj/Debug/net6.0/tempCodeRunnerFile.GeneratedMSBuildEditorConfig.editorconfig
+/Users/cctz/intermediate-programming/Stardew_Mods/Notes/Notes/obj/Debug/net6.0/tempCodeRunnerFile.AssemblyInfoInputs.cache
+/Users/cctz/intermediate-programming/Stardew_Mods/Notes/Notes/obj/Debug/net6.0/tempCodeRunnerFile.AssemblyInfo.cs
+/Users/cctz/intermediate-programming/Stardew_Mods/Notes/Notes/obj/Debug/net6.0/tempCodeRunnerFile.csproj.CoreCompileInputs.cache
+/Users/cctz/intermediate-programming/Stardew_Mods/Notes/Notes/obj/Debug/net6.0/tempCodeRunnerFile.sourcelink.json
+/Users/cctz/intermediate-programming/Stardew_Mods/Notes/Notes/obj/Debug/net6.0/tempCodeRunnerFile.dll

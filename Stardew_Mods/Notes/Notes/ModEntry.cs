@@ -2,98 +2,84 @@
 using StardewModdingAPI.Events;
 using StardewValley;
 using StardewValley.Menus;
+using StardewValley.BellsAndWhistles;
 using Microsoft.Xna.Framework;
-using StardewValley.Menus;
-using System;
+using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 
 namespace Notes
 {
-     /// <summary>The mod entry point.</summary>
-     internal sealed class MonEntry : Mod
+    public class ModEntry : Mod
+    {
+        private List<string> savedNotes = new();
 
-     {
-          private Item? selectedItemForNote;
-          private int? selectedSlotIndex = null;
-          private ItemGrabMenu? sourceMenu = null;
+        public override void Entry(IModHelper helper)
+        {
+            helper.Events.Input.ButtonPressed += OnButtonPressed;
+            this.Monitor.Log("Notes mod loaded.", LogLevel.Info);
+        }
 
-          /*********
-          ** Public methods
-          *********/
-          /// <summary>The mod entry point, called after the mod is first loaded.</summary>
-          /// <param name="helper">Provides simplified APIs for writing mods.</param>
-          public override void Entry(IModHelper helper)
-          {
-               helper.Events.Input.ButtonPressed += this.OnButtonPressed;
-          }
+        private void OnButtonPressed(object? sender, ButtonPressedEventArgs e)
+        {
+            if (!Context.IsWorldReady)
+                return;
 
+            // Press N to view notes
+            if (e.Button == SButton.N)
+            {
+                this.Monitor.Log(" Opening Notes menu.", LogLevel.Debug);
+                Game1.activeClickableMenu = new NotesMenu(savedNotes);
+            }
 
-          /*********
-          ** Private methods
-          *********/
-          /// <summary>Raised after the player presses a button on the keyboard, controller, or mouse.</summary>
-          /// <param name="sender">The event sender.</param>
-          /// <param name="e">The event data.</param>
-          private void OnButtonPressed(object? sender, ButtonPressedEventArgs e)
-          {
-               // only act on right-click
-               if (e.Button != SButton.MouseRight)
-                    return;
+            // Press / to write a new note
+            if (e.Button == SButton.OemQuestion) 
+            {
+                this.Monitor.Log(" Opening note input box.", LogLevel.Debug);
+                Game1.activeClickableMenu = new NamingMenu(OnNoteEntered, "Enter your note:", "");
+            }
+        }
 
-               // be in an inventory menu
-               if (Game1.activeClickableMenu is not ItemGrabMenu menu)
-                    return;
+        private void OnNoteEntered(string noteText)
+        {
+            if (string.IsNullOrWhiteSpace(noteText))
+            {
+                Game1.addHUDMessage(new HUDMessage(" Note was empty. Nothing saved.", 3));
+                return;
+            }
 
-               // check if the click was on an inventory slot
-               var inventoryMenu = menu.inventory;
-               int mouseX = Game1.getMouseX();
-               int mouseY = Game1.getMouseY();
+            savedNotes.Add(noteText);
+            Game1.addHUDMessage(new HUDMessage($" Note saved: \"{noteText}\"", 2));
+            this.Monitor.Log($" Saved note: {noteText}", LogLevel.Info);
+        }
 
-               int index = 0;
-               foreach (ClickableComponent slot in inventoryMenu.inventory)
-               {
-               if (slot.containsPoint(mouseX, mouseY))
-               {
-                    Item? clickedItem = inventoryMenu.getItemAt(slot.bounds.X, slot.bounds.Y);
-                    if (clickedItem != null)
-                    {
-                         this.selectedSlotIndex = index;
-                         this.sourceMenu = menu;
+        private class NotesMenu : IClickableMenu
+        {
+            private readonly List<string> notes;
+            private readonly int lineHeight = 40;
 
-                         Game1.activeClickableMenu = new NamingMenu(OnNoteEntered, "Enter Note:", "");
-                         return;
-                    }
-               }
-               index++;
-               }
+            public NotesMenu(List<string> notes)
+                : base(Game1.viewport.Width / 2 - 300, Game1.viewport.Height / 2 - 200, 600, 400, true)
+            {
+                this.notes = notes;
+            }
 
-               }
+            public override void draw(SpriteBatch b)
+            {
+                Game1.drawDialogueBox(this.xPositionOnScreen, this.yPositionOnScreen, this.width, this.height, false, true);
+                SpriteText.drawString(b, "Your Notes", this.xPositionOnScreen + 20, this.yPositionOnScreen + 20);
 
-          private void OnNoteEntered(string noteText)
-          {
-          if (string.IsNullOrWhiteSpace(noteText) || selectedSlotIndex == null || sourceMenu == null)
-               return;
+                for (int i = 0; i < notes.Count; i++)
+                {
+                    string note = notes[i];
+                    int y = this.yPositionOnScreen + 60 + i * lineHeight;
 
-          var inventoryMenu = sourceMenu.inventory;
-          Item? item = inventoryMenu.actualInventory.ElementAtOrDefault(selectedSlotIndex.Value);
+                    if (y + lineHeight < this.yPositionOnScreen + this.height - 20)
+                        SpriteText.drawString(b, $"- {note}", this.xPositionOnScreen + 40, y);
+                }
 
-          if (item == null)
-          {
-               this.Monitor.Log("Failed to re-find item after note entry.", LogLevel.Warn);
-               return;
-          }
-
-          item.modData["cctz_hm.note"] = noteText;
-
-          Game1.addHUDMessage(new HUDMessage($"Note saved: \"{noteText}\"", 2));
-          this.Monitor.Log($"Saved note for {item.Name}: {noteText}", LogLevel.Info);
-
-          selectedSlotIndex = null;
-          sourceMenu = null;
-          }
-
-
-     }
+                base.draw(b);
+                this.drawMouse(b);
+            }
+        }
+    }
 }
-
-          
-     
