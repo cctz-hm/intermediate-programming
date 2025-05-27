@@ -5,6 +5,7 @@ using StardewValley.Menus;
 using StardewValley.BellsAndWhistles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 
 namespace Notes
@@ -24,18 +25,14 @@ namespace Notes
             if (!Context.IsWorldReady)
                 return;
 
-            // Press N to view notes
             if (e.Button == SButton.N)
             {
-                this.Monitor.Log(" Opening Notes menu.", LogLevel.Debug);
                 Game1.activeClickableMenu = new NotesMenu(savedNotes);
             }
 
-            // Press / to write a new note
-            if (e.Button == SButton.OemQuestion) 
+            if (e.Button == SButton.OemQuestion)
             {
-                this.Monitor.Log(" Opening note input box.", LogLevel.Debug);
-                Game1.activeClickableMenu = new NamingMenu(OnNoteEntered, "Enter your note:", "");
+                Game1.activeClickableMenu = new NoteInputMenu(OnNoteEntered);
             }
         }
 
@@ -43,13 +40,13 @@ namespace Notes
         {
             if (string.IsNullOrWhiteSpace(noteText))
             {
-                Game1.addHUDMessage(new HUDMessage(" Note was empty. Nothing saved.", 3));
+                Game1.addHUDMessage(new HUDMessage("note is empty", 3));
                 return;
             }
 
             savedNotes.Add(noteText);
-            Game1.addHUDMessage(new HUDMessage($" Note saved: \"{noteText}\"", 2));
-            this.Monitor.Log($" Saved note: {noteText}", LogLevel.Info);
+            Game1.addHUDMessage(new HUDMessage($"saved: \"{noteText}\"", 2));
+            this.Monitor.Log($"saved: {noteText}", LogLevel.Info);
         }
 
         private class NotesMenu : IClickableMenu
@@ -79,6 +76,96 @@ namespace Notes
 
                 base.draw(b);
                 this.drawMouse(b);
+            }
+        }
+
+        private class NoteInputMenu : IClickableMenu
+        {
+            private readonly TextBox textBox;
+            private readonly ClickableComponent okButton;
+            private readonly ClickableComponent cancelButton;
+            private readonly System.Action<string> onSubmit;
+
+            public NoteInputMenu(System.Action<string> onSubmit)
+                : base(Game1.viewport.Width / 2 - 300, Game1.viewport.Height / 2 - 100, 600, 200, true)
+            {
+                this.onSubmit = onSubmit;
+
+                textBox = new TextBox(
+                    Game1.content.Load<Texture2D>("LooseSprites\\textBox"),
+                    Game1.content.Load<Texture2D>("LooseSprites\\textBox"),
+                    Game1.dialogueFont,
+                    Game1.textColor
+                )
+                {
+                    X = this.xPositionOnScreen + 50,
+                    Y = this.yPositionOnScreen + 60,
+                    Width = 500,
+                    Height = 64,
+                    Text = "",
+                    Selected = true
+                };
+
+                okButton = new ClickableComponent(new Rectangle(this.xPositionOnScreen + 130, this.yPositionOnScreen + 130, 100, 40), "OK");
+                cancelButton = new ClickableComponent(new Rectangle(this.xPositionOnScreen + 370, this.yPositionOnScreen + 130, 100, 40), "Cancel");
+
+                Game1.keyboardDispatcher.Subscriber = textBox;
+            }
+
+            public override void draw(SpriteBatch b)
+            {
+                Game1.drawDialogueBox(xPositionOnScreen, yPositionOnScreen, width, height, false, true);
+                SpriteText.drawString(b, "Enter your note:", xPositionOnScreen + 50, yPositionOnScreen + 20);
+                textBox.Draw(b);
+
+                // OK button
+                IClickableMenu.drawTextureBox(
+                    b, Game1.mouseCursors, new Rectangle(403, 383, 6, 6),
+                    okButton.bounds.X, okButton.bounds.Y, okButton.bounds.Width, okButton.bounds.Height,
+                    Color.White, 4f);
+                SpriteText.drawString(b, "OK", okButton.bounds.X + 25, okButton.bounds.Y + 10);
+
+                // Cancel button
+                IClickableMenu.drawTextureBox(
+                    b, Game1.mouseCursors, new Rectangle(403, 383, 6, 6),
+                    cancelButton.bounds.X, cancelButton.bounds.Y, cancelButton.bounds.Width, cancelButton.bounds.Height,
+                    Color.White, 4f);
+                SpriteText.drawString(b, "Cancel", cancelButton.bounds.X + 10, cancelButton.bounds.Y + 10);
+
+                base.draw(b);
+                this.drawMouse(b);
+            }
+
+            public override void receiveLeftClick(int x, int y, bool playSound = true)
+            {
+                base.receiveLeftClick(x, y, playSound);
+
+                if (okButton.containsPoint(x, y))
+                {
+                    Game1.playSound("smallSelect");
+                    onSubmit(textBox.Text.Trim());
+                    Game1.exitActiveMenu();
+                }
+                else if (cancelButton.containsPoint(x, y))
+                {
+                    Game1.playSound("bigDeSelect");
+                    Game1.exitActiveMenu();
+                }
+            }
+
+            public override void receiveKeyPress(Keys key)
+            {
+                base.receiveKeyPress(key);
+
+                if (key == Keys.Enter)
+                {
+                    onSubmit(textBox.Text.Trim());
+                    Game1.exitActiveMenu();
+                }
+                else if (key == Keys.Escape)
+                {
+                    Game1.exitActiveMenu();
+                }
             }
         }
     }
